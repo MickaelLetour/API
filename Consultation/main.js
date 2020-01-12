@@ -28,6 +28,19 @@ $(function(){
         }
     }) 
 
+    let list= [
+        "Premier",
+        "second", 
+        "third",
+        "fouth",
+        "fifth",
+    ];
+
+    $('#search').autocomplete({
+        source : list
+
+    })
+
     criteres.on('change', function(){
         criteresValue = criteres.val();
         if(criteresValue=='id'){
