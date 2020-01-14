@@ -5,11 +5,11 @@ $(function(){
     let option2= $("<option></option><option>id</option><option>Pays</option><option>Nom</option><option>Prénom</option>");
     let search=$("#search");
     let result=$("#result");
-    let response=$('#response');
-    let criteresValue="";
+    var criteresValue="";
     let link;
     let submit = $('#submit');
     let searchValue ="";
+    let newTab = [];
 
     type.on('change', function(){
         if (type.val() == "Livres"){
@@ -28,17 +28,9 @@ $(function(){
         }
     }) 
 
-    let list= [
-        "Premier",
-        "second", 
-        "third",
-        "fouth",
-        "fifth",
-    ];
-
     $('#search').autocomplete({
-        source : list
-
+        minLength: 3,
+        source : newTab
     })
 
     criteres.on('change', function(){
@@ -70,6 +62,85 @@ $(function(){
     search.on('keyup', function(){
         searchValue = search.val();
         console.log(searchValue);
+        $.ajax({
+            type: "GET",
+            url: link,             
+            data: {column : criteresValue , keyWord : searchValue},
+            dataType: "json",
+
+            success: function(data) {
+                console.log('i work');
+                
+                if(criteresValue=='id'){
+                    newTab.splice(0,newTab.length);
+                    $.map(data, function(objet){
+                        var t = objet.id;
+                        console.log(t);
+                        if($.inArray(t,newTab)<0) { // Si l'élément n'est pas déjà présent
+                            newTab.push(t);
+                            console.table(newTab);
+                        }        
+                    })
+                }
+                else if (criteresValue == "title"){
+                    newTab.splice(0,newTab.length);
+                    $.map(data, function(objet){
+                        var t = objet.title;
+                        console.log(t);
+                        if($.inArray(t,newTab)<0) { // Si l'élément n'est pas déjà présent
+                            newTab.push(t);
+                            console.table(newTab);
+                        }        
+                    })
+                }
+                else if (criteresValue == "lname"){
+                    newTab.splice(0,newTab.length);
+                    $.map(data, function(objet){
+                        var t = objet.lname;
+                        console.log(t);
+                        if($.inArray(t,newTab)<0) { // Si l'élément n'est pas déjà présent
+                            newTab.push(t);
+                            console.table(newTab);
+                        }        
+                    })
+                }
+
+                else if (criteresValue == "name"){
+                    newTab.splice(0,newTab.length);
+                    $.map(data, function(objet){
+                        var t = objet.name;
+                        console.log(t);
+                        if($.inArray(t,newTab)<0) { // Si l'élément n'est pas déjà présent
+                            newTab.push(t);
+                            console.table(newTab);
+                        }        
+                    })
+            }
+                else if (criteresValue == "country"){
+                    newTab.splice(0,newTab.length);
+                    $.map(data, function(objet){
+                        var t = objet.name;
+                        console.log(t);
+                        if($.inArray(t,newTab)<0) { // Si l'élément n'est pas déjà présent
+                            newTab.push(t);
+                            console.table(newTab);
+                        }        
+                    })
+                }
+                
+                else if (criteresValue == "fname"){
+                    newTab.splice(0,newTab.length);
+                    $.map(data, function(objet){
+                        var t = objet.fname;
+                        console.log(t);
+                        if($.inArray(t,newTab)<0) { // Si l'élément n'est pas déjà présent
+                            newTab.push(t);
+                            console.table(newTab);
+                        }        
+                    })
+                }
+            }
+        })
     })
 
     function secondAjax(a,b){
@@ -141,6 +212,4 @@ $(function(){
         }) 
     }) 
 });
-
-
     

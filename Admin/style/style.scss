@@ -1,0 +1,51 @@
+body{
+    margin:0;
+    height: 100%;
+}
+#connected,#disconnected {
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    background-color: rgb(50, 50, 50);
+    color:white;
+    width: 100%;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+#disconnect{
+    margin :0;
+    margin-right: 1vw;
+    text-decoration: none;
+    color: white;
+}
+
+main{
+    font-size: 1.2em;
+    text-align: center;
+    margin: auto;
+    margin-top: 35vh;
+}
+ 
+@media only screen and (min-width: 768px) {
+
+    #connected,#disconnected {
+        height: 100vh;
+        width: 30vw;
+        text-align: center;
+        font-size: 1.5em;
+        position: fixed;
+        top:0;
+        bottom: 0;
+        left: 0;
+    }
+    
+    main{
+        height: 40vh;
+        width: 70vw;
+        margin-top: 30vh;
+        margin-bottom: 30vh;
+        margin-left: 30vw;
+    }
+}

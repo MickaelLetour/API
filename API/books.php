@@ -1,5 +1,5 @@
 <?php
-
+header("Access-Control-Allow-Origin: *");
 require_once "Functions/booksFunction.php";
 header("Content-Type: application/json");
 header("Content-Encoding: UTF-8");
