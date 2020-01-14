@@ -29,6 +29,10 @@ main {
   margin-top: 35vh;
 }
 
+#submit {
+  margin-top: 1vh;
+}
+
 @media only screen and (min-width: 768px) {
   #connected, #disconnected {
     height: 100vh;
@@ -47,6 +51,18 @@ main {
     margin-top: 30vh;
     margin-bottom: 30vh;
     margin-left: 30vw;
+  }
+
+  #head {
+    position: fixed;
+    top: 10vh;
+    left: 9vw;
+  }
+
+  #foot {
+    position: fixed;
+    bottom: 10vh;
+    left: 8vw;
   }
 }
 

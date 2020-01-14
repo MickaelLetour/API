@@ -22,13 +22,14 @@ if (isset($_SESSION['username'])){
     $user = $_SESSION['username'];
     echo "<h3>Bienvenue $user</h3>
     <a id='disconnect' href='logout.php'>Deconnection</a>
-
+    </div>
+    <div id='foot'>
     <h3>Nouvel Admin</h3>
 
-    <form id='register' action='register.php' method='POST'>
+    <form id='register' action='admin.php' method='POST'>
 
-        <label for='username'>Identifiant</label><br>
-        <input type='text' id='username' name='username' minlength='6' required><br>
+        <label for='userId'>Identifiant</label><br>
+        <input type='text' id='userId' name='userId' minlength='6' required><br>
 
         <label for='password'>Mot de passe</label><br>
         <input type='password' id='password' name='password' minlength='6' required><br>
@@ -36,7 +37,7 @@ if (isset($_SESSION['username'])){
         <label for='password2'>Confirmez le mot de passe</label><br>
         <input type='password' id='password2' name='password2' minlength='6' required><br>
 
-        <label for='email'>Mot de passe</label><br>
+        <label for='email'>Email</label><br>
         <input type='email' id='email' name='email' minlength='6' required><br>
 
         <input id='submit' type='submit'>
@@ -47,7 +48,7 @@ if (isset($_SESSION['username'])){
     </header>";
 }
 else {
-    echo "<header id='disconnected'>";
+    echo "<header id='disconnected'><div id='head'>";
     echo "<form action='admin.php' method='POST'>
 
     <label for='username'>Identifiant</label><br>
@@ -60,7 +61,7 @@ else {
 
     </form>
 
-    
+    </div>
 </header>";
 
 echo "<main>
