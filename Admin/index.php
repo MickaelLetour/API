@@ -16,17 +16,32 @@
 
 
 <?php
+
 session_start();
 if (isset($_SESSION['username'])){    
     echo "<header id='connected'><div id='head'>";
     $user = $_SESSION['username'];
     echo "<h3>Bienvenue $user</h3>
-    <a id='disconnect' href='logout.php'>Deconnection</a>
+    <a id='disconnect' href='../API/logout.php'>Deconnection</a>
+    <a id='switch' href='../Consultation/index.php'>Consultation</a>
     </div>
     <div id='foot'>
-    <h3>Nouvel Admin</h3>
-
-    <form id='register' action='admin.php' method='POST'>
+    <h3>Nouvel Admin</h3>";
+    if(isset($_SESSION['errors'])){
+        $errors = $_SESSION['errors'];
+        if(!empty($errors)){ 
+            echo "<div class='alert'>
+                <p>Vous n'avez pas rempli le formulaire correctement</p>
+                <ul>";
+                foreach($errors as $error){
+                    echo "<li> $error </li>";
+                } 
+                echo "</ul>
+            </div>";
+            unset($_SESSION['errors']);
+        }
+    }
+   echo "<form id='register' action='../API/admin.php' method='POST'>
 
         <label for='userId'>Identifiant</label><br>
         <input type='text' id='userId' name='userId' minlength='6' required><br>
@@ -44,27 +59,46 @@ if (isset($_SESSION['username'])){
 
     </form>";
     
+    if (isset($_SESSION['flash'])){
+        foreach($_SESSION['flash'] as $type =>$message){ 
+    
+          echo "<div class='alert'= $type>";
+          
+          echo $message;
+          
+          echo "</div>";
+        }
+    
+        unset($_SESSION['flash']);  
+    }
+
     echo "</div>
     </header>";
 }
 else {
-    echo "<header id='disconnected'><div id='head'>";
-    echo "<form action='admin.php' method='POST'>
+    
+    echo "<header id='disconnected'>";
+    echo "<div id='head'>";
+    echo "<h3>Connection</h3>";
+    echo "<form action='../API/admin.php' method='POST'>
 
     <label for='username'>Identifiant</label><br>
     <input type='text' id='username' name='username' minlength='6' required><br>
 
     <label for='password'>Mot de passe</label><br>
     <input type='password' id='password' name='password' minlength='6' required><br>
+    <a id='pwdForget' href='forget.php'>mot de passe oublié</a><br>
 
     <input id='submit' type='submit'>
 
     </form>
 
-    </div>
+    </div>";
+    echo "<a id='switchDis' href='../Consultation/index.php'>Consultation des livres et auteurs</a>
+
 </header>";
 
-echo "<main>
+echo "<main id='mainDisconnected'>
         <h2>Bienvenue sur Consult.books.com!!</h2>
         <p> Si vous êtes sur cette page c'est que vous êtes admin de ce site.<br>
         Pour ajouter de nouveaux livres ou auteurs, veuillez d'abord vous identifier!!</p>
@@ -75,28 +109,24 @@ echo "<main>
 <?php
     if (isset($_SESSION['username'])){
 ?>
-    <main><div id='addAuteur'>
-        <h1>Ajouter un Auteur</h1>
-        <form action="admin.php" method="POST" id="addAuthor">
+    
 
-            <label for="lname">Nom</label><br>
-            <input type="text" id="lname" name="lname" required><br>
 
-            <label for="fname">Prénom</label><br>
-            <input type="text" id="fname" name="fname" required><br>
-
-            <label for="country">Pays</label><br>
-            <select id="country" name="country" required>
+    <main id="mainConnected">
+        <label for="chooseElement">Choisissez l'élément a ajouter</label>
+            <select id="chooseElement" name="chooseElement">
                 <option></option>
+                <option>Livre</option>
+                <option>Auteur</option>
+                <option>Catégorie</option>
+                <option>Pays</option>
             </select><br>
-
-            <input type="submit" id="submit">
-
-        </form></div>
-    </main>
-    <?php
-    }
-    ?>
+        <div id="formAdd">
+        </div>
+    </main> 
+<?php
+}
+?>
 
 </body>
 </html>

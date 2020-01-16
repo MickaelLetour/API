@@ -11,7 +11,7 @@ function logout(){
     session_destroy ();
 
     // On redirige le visiteur vers la page d'accueil
-    header ('location: ./index.php');
+    header ('location: ../Admin/index.php');
 }
 
 ?>

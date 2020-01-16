@@ -1,9 +1,27 @@
-h1 {
+body {
+  background-color: #646464;
+}
+
+h1, h3 {
   margin: auto;
   margin-bottom: 5vh;
   width: 100%;
   text-align: center;
   font-size: 2em;
+}
+
+#switch {
+  display: flex;
+}
+
+#bordel {
+  text-decoration: none;
+  font-size: 1.5em;
+  color: white;
+  text-align: center;
+  border: white 1px solid;
+  margin: auto;
+  margin-bottom: 2vh;
 }
 
 hr {

@@ -15,7 +15,9 @@
 </head>
 <body>
 <nav>
-<h1>Consultation BDD</h1>
+<h1>Bienvenue sur ConsultBooks</h1>
+    <div id="switch"><a id='bordel' href="../Admin/index.php">Login</a></div>
+    <h3>Recherche</h3>
     <form method="GET">
 
     <div class="boxChamp" id="boxTitre">

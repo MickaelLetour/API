@@ -17,7 +17,7 @@ class Connexion{
      */
     public function __construct(){
 
-        $this->file = 'config/config.json'; 
+        $this->file = "/laragon/www/API/API/config/config.json"; 
         $this->data = json_decode(file_get_contents($this->file));
 
         $this->DB_USER = $this->data->database->user;
