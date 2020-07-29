@@ -1,6 +1,6 @@
 <?php
 
-require_once "config/Connexion.php";
+require_once "./config/Connexion.php"; 
 
 function getAuthor(){
     $dbh = new Connexion();
